@@ -1,0 +1,70 @@
+# ============================================================
+# UNMT Turkish-English Configuration
+# ============================================================
+
+# --- Data paths ---
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  src_lang: "tr"
+  tgt_lang: "en"
+  src_mono: "data/raw/mono.tr.txt"
+  tgt_mono: "data/raw/mono.en.txt"
+  eval_src: "data/raw/eval.tr.txt"
+  eval_ref: "data/raw/eval.en.txt"
+
+# --- Preprocessing ---
+preprocessing:
+  max_sentence_length: 100
+  min_sentence_length: 3
+  lowercase: false
+  remove_duplicates: true
+  normalize_punctuation: true
+
+# --- Tokenization ---
+tokenization:
+  method: "sentencepiece"  # "sentencepiece" or "bpe"
+  vocab_size: 32000
+  shared_vocab: true
+  model_prefix: "data/processed/spm"
+
+# --- Model ---
+model:
+  encoder_layers: 4
+  decoder_layers: 4
+  hidden_size: 512
+  ffn_size: 2048
+  num_heads: 8
+  dropout: 0.1
+  share_encoder: true
+
+# --- Denoising autoencoder ---
+denoising:
+  word_dropout: 0.1
+  word_shuffle: 3
+  word_mask: 0.0
+
+# --- Back-translation ---
+backtranslation:
+  iterations: 5
+  beam_size: 5
+  batch_size: 32
+
+# --- Training ---
+training:
+  epochs: 20
+  batch_size: 32
+  learning_rate: 0.0001
+  optimizer: "adam"
+  warmup_steps: 4000
+  seed: 42
+  device: "cuda"
+  checkpoint_dir: "results/"
+
+# --- Evaluation ---
+evaluation:
+  metrics:
+    - "bleu"
+    - "chrf"
+  beam_size: 5
+  max_length: 150

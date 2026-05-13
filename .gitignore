@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.egg
+.venv/
+venv/
+env/
+
+# Data files (too large for git)
+data/raw/*.txt
+data/raw/*.gz
+data/processed/*.txt
+data/processed/*.bin
+data/processed/*.model
+data/processed/*.vocab
+
+# Model checkpoints
+results/*.pt
+results/*.bin
+results/*.ckpt
+
+# Logs
+*.log
+wandb/
+runs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Jupyter
+.ipynb_checkpoints/
